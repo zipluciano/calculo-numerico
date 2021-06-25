@@ -25,9 +25,7 @@ while (fa * fb) > 0:
     while a > b:
         print("\nO (a) é maior que o (b)")
         a = int(input("Insira novos valores para o início do intervalo (a): "))
-        b = int(input("Insira novos valores para o fim do intervalo (b): "))
-    X = np.arange(a, b, (b - a) * 0.1)
-    y = list(map(func, X))
+        b = int(input("Insira novos valores para o fim do intervalo (b): "))    
     fa = func(a)
     fb = func(b)
 
@@ -44,7 +42,7 @@ font = {'color':  'darkred',
         'size': 15
         }
 fig = plt.figure()
-plt.plot(X,y)
+plt.plot(X, y, linewidth = 2)
 
 while (abs(fxm) > erro):
     k += 1
@@ -60,8 +58,8 @@ while (abs(fxm) > erro):
         a = xm
         fa = fxm    
 
-for x in range(0, 26):
-    plt.plot(x_c[x], r_c[x])
+for x in range(0, k):
+    plt.plot(x_c[x], r_c[x], 'r')
 
 plt.title("Raízes - Método da Falsa Posição", fontdict = font)
 plt.xlabel("Valores de xm")
@@ -70,5 +68,9 @@ plt.grid()
 fig.savefig(img)
 
 print("\nNúmero de iterações: {}".format(k))
-print("Raiz da função: {:.7f}".format(xm))
-print("Função aplicada na raiz: {:.8f}".format(fxm))
+print("Raiz da função: {:.11f}".format(xm))
+print("Função aplicada na raiz: {:.11f}".format(fxm))
+
+# Gráfico plotado para valores de:
+# a = 0
+# b = 2
