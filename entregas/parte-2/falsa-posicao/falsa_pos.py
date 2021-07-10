@@ -6,7 +6,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 cwd = os.path.join(os.getcwd(), "entregas", "parte-2", "falsa-posicao")
-img = os.path.join(cwd, "falsa_pos_chart.png")
+img = os.path.join(cwd, "falsa_pos.png")
 
 a = int(input("\nInsira o início do intervalo (a): "))
 b = int(input("Insira o fim do intervalo (b): "))

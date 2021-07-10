@@ -6,7 +6,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 cwd = os.path.join(os.getcwd(), "entregas", "parte-2", "falsa-posicao")
-img = os.path.join(cwd, "falsa_pos_mod_chart.png")
+img = os.path.join(cwd, "falsa_pos_mod.png")
 
 a = int(input("\nInsira o início do intervalo (a): "))
 b = int(input("Insira o fim do intervalo (b): "))
@@ -70,7 +70,7 @@ plt.xlabel("Valores de xm")
 plt.ylabel("Valores de f(xm)")
 plt.grid()
 fig.savefig(img)
-
+# %%
 print("\nNúmero de iterações: {}".format(k))
 print("Raiz da função: {:.11f}".format(xm))
 print("Função aplicada na raiz: {:.11f}".format(fxm))
@@ -78,3 +78,4 @@ print("Função aplicada na raiz: {:.11f}".format(fxm))
 # Gráfico plotado para valores de:
 # a = 0
 # b = 2
+# %%

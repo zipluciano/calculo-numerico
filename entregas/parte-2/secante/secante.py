@@ -5,8 +5,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-cwd = os.path.join(os.getcwd(), "entregas", "parte-2", "bissecao")
-img = os.path.join(cwd, "bissec.png")
+cwd = os.path.join(os.getcwd(), "entregas", "parte-2", "secante")
+img = os.path.join(cwd, "secante.png")
 
 a = int(input("\nInsira o início do intervalo (a): "))
 b = int(input("Insira o fim do intervalo (b): "))
@@ -25,50 +25,51 @@ while (fa * fb) > 0:
     while a > b:
         print("\nO (a) é maior que o (b)")
         a = int(input("Insira novos valores para o início do intervalo (a): "))
-        b = int(input("Insira novos valores para o fim do intervalo (b): "))
-    X = np.arange(a, b, (b - a) * 0.1)
-    y = list(map(func, X))
+        b = int(input("Insira novos valores para o fim do intervalo (b): "))    
     fa = func(a)
     fb = func(b)
 
+erro = 10 ** (-7)
+k = 0 
+x0 = a
+x1 = b
+f0 = func(x0)
+f1 = func(x1)
+x_c = []
+r_c = []
 X = np.arange(a, b, (b - a) * 0.1)
 y = list(map(func, X))
-erro = (10 ** (-7))
-k = 0
-fxm = 1
-X_xm = []
-y_fxm = []
-
-while (abs(fxm) > erro):
-    k += 1
-    xm = (a + b) / 2
-    fxm = func(xm)
-    if (fa * fxm) < 0:
-        b = xm
-        fb = fxm
-    else:
-        a = xm
-        fa = fxm
-    X_xm.append(xm)
-    y_fxm.append(fxm)
 
 font = {'color':  'darkred',
         'weight': 'normal',
         'size': 15
         }
-
 fig = plt.figure()
-plt.plot(X, y)
-plt.plot(X_xm, y_fxm, "r+", linewidth = 2)
-plt.title("Raízes - Método da Bisseção", fontdict = font)
-plt.xlabel("Valores de xm")
-plt.ylabel("Valores de f(xm)")
+plt.plot(X, y, linewidth = 2)
+
+while abs(f1) > erro:
+    k += 1    
+    x_c.append(X)
+    r = (f1 * (X - x0)) + f0    
+    r_c.append(r)        
+    xk = x1 - (((x1 - x0) * f1) / (f1 - f0))
+    x0 = x1
+    x1 = xk
+    f0 = f1
+    f1 = func(x1)
+
+for x in range(0, k):
+    plt.plot(x_c[x], r_c[x], 'r')
+
+plt.title("Raízes - Método da Secante", fontdict = font)
+plt.xlabel("Valores de x")
+plt.ylabel("Valores de f(x)")
 plt.grid()
 fig.savefig(img)
 
-print("\nNúmero de iterações: {}".format(k))
-print("Raiz da função: {:.11f}".format(xm))
-print("Função aplicada na raiz: {:.11f}".format(fxm))
+print(f"\nNúmero de iterações: {k}")
+print("Raiz da função: {:.11f}".format(xk))
+print("Função aplicada na raiz: {:.11f}".format(f1))
 
 # Gráfico plotado para valores de:
 # a = 0
