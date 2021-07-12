@@ -50,7 +50,7 @@ plt.plot(X, y, linewidth = 2)
 while abs(f1) > erro:
     k += 1    
     x_c.append(X)
-    r = (f1 * (X - x0)) + f0    
+    r = f0 + (((f1- f0) / (x1 - x0)) * (X - x0))
     r_c.append(r)        
     xk = x1 - (((x1 - x0) * f1) / (f1 - f0))
     x0 = x1
