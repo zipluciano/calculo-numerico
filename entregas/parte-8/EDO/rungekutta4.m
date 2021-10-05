@@ -1,0 +1,3 @@
+#método de Runge-Kutta#ordem P (metodo de euler com mais termos na equação) #  2 ordem function rungekutta4  a=0;  b=0.5;  #intervalo  h=0.1;  #numero de pontos   x=[a:h:b];  n=length(x)  y(1)=-1; #PVI   for i=1:n-1    k1=h*fxy(x(i),y(i));    k2=h*fxy(x(i)+(h/2),y(i)+(k1/2));
+    k3=h*fxy(x(i)+(h/2),y(i)+(k2/2));
+    k4=h*fxy(x(i)+h,y(i)+k3);    y(i+1)=y(i)+(k1+(2*k2)+(2*k3)+k4)/6;  #equação de euler  end  y  ye=-3*exp(-x)-2*x+2;    #solução exata  d=abs(ye-y);  plot(x,y)  grid  hold on  plot(x,ye,'r') endfunction f=fxy(x,y)  f=-2*x-y;   #função EDOend
